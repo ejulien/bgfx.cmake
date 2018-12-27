@@ -36,15 +36,16 @@ if( WIN32 )
 endif()
 
 # Add include directory of bx
-target_include_directories( bx PUBLIC ${BX_DIR}/include ${BX_DIR}/3rdparty )
+target_include_directories( bx PRIVATE ${BX_DIR}/3rdparty )
+target_include_directories( bx PUBLIC $<BUILD_INTERFACE:${BX_DIR}/include> $<INSTALL_INTERFACE:include> )
 
 # Build system specific configurations
 if( MSVC )
-	target_include_directories( bx PUBLIC ${BX_DIR}/include/compat/msvc )
+	target_include_directories( bx PUBLIC $<BUILD_INTERFACE:${BX_DIR}/include/compat/msvc> $<INSTALL_INTERFACE:include/compat/msvc> )
 elseif( MINGW )
-	target_include_directories( bx PUBLIC ${BX_DIR}/include/compat/mingw )
+	target_include_directories( bx PUBLIC $<BUILD_INTERFACE:${BX_DIR}/include/compat/mingw> $<INSTALL_INTERFACE:include/compat/mingw> )
 elseif( APPLE )
-	target_include_directories( bx PUBLIC ${BX_DIR}/include/compat/osx )
+	target_include_directories( bx PUBLIC $<BUILD_INTERFACE:${BX_DIR}/include/compat/osx> $<INSTALL_INTERFACE:include/compat/osx> )
 endif()
 
 # All configurations
