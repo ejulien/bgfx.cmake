@@ -76,8 +76,14 @@ if( BGFX_INSTALL )
 
 	# install tools
 	if( BGFX_BUILD_TOOLS )
-        install( TARGETS shaderc DESTINATION bin )
-		install( TARGETS geometryc DESTINATION bin )
+        install( TARGETS shaderc DESTINATION bin/Debug CONFIGURATIONS Debug )
+        install( TARGETS shaderc DESTINATION bin/Release CONFIGURATIONS Release )
+
+		install( TARGETS geometryc DESTINATION bin/Debug CONFIGURATIONS Debug )
+		install( TARGETS geometryc DESTINATION bin/Release CONFIGURATIONS Release )
+
+		install( TARGETS texturec DESTINATION bin/Debug CONFIGURATIONS Debug )
+		install( TARGETS texturec DESTINATION bin/Release CONFIGURATIONS Release )
 	endif()
 
 	# install examples
